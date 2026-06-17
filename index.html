@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Monitoring Produktivitas - BPVP Sorong</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); }
+        .materi-card:hover { transform: translateY(-5px); transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+
+    <nav class="gradient-bg text-white shadow-lg p-4 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-white p-2 rounded-full w-10 h-10 flex items-center justify-center font-bold text-blue-800 shadow">
+                    BPVP
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold tracking-wide">BPVP SORONG</h1>
+                    <p class="text-xs text-blue-200">Monitoring Produktivitas Perusahaan & UMKM</p>
+                </div>
+            </div>
+            <div class="space-x-2" id="nav-buttons">
+                <a href="https://kemnaker.go.id" target="_blank" class="bg-amber-500 hover:bg-amber-600 px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md"><i class="fas fa-external-link-alt mr-1"></i> KEMNAKER</a>
+                <button onclick="switchPage('page-login')" class="bg-white text-blue-800 hover:bg-gray-100 px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md" id="btn-login-nav">Login Kemitraan</button>
+                <button onclick="logout()" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md hidden" id="btn-logout-nav">Keluar</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="page-home" class="space-y-12">
+            <div class="bg-white rounded-2xl p-6 md:p-10 shadow-xl flex flex-col md:flex-row items-center justify-between border border-gray-100">
+                <div class="space-y-4 md:w-1/2">
+                    <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Sosialisasi & Keberlanjutan</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 leading-tight">Membangun Budaya Produktivitas Berkelanjutan di Kota Sorong</h2>
+                    <p class="text-gray-600 leading-relaxed">Platform monitoring terintegrasi untuk mengukur efisiensi, optimalisasi modal, dan performa tenaga kerja pasca-pelatihan bersama BPVP Sorong.</p>
+                    <button onclick="switchPage('page-register')" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-medium shadow-lg transition">Daftarkan Perusahaan / UMKM Anda <i class="fas fa-arrow-right ml-2"></i></button>
+                </div>
+                <div class="md:w-1/2 mt-6 md:mt-0 flex justify-center">
+                    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z5bW93cXN6ZHB5cXN0ZXR5N3F5bW93cXN6ZHB5cXN0ZXR5N3F5Ji1pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/tJqyalvo9ahykfykAj/giphy.gif" alt="Productivity Animation" class="w-80 h-auto drop-shadow-2xl">
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold text-gray-800">Pilar Utama Peningkatan Produktivitas</h3>
+                    <p class="text-gray-500 text-sm">Materi wajib implementasi industri dan UMKM binaan</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="materi-card bg-white p-6 rounded-xl shadow-md border-t-4 border-emerald-500">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="bg-emerald-100 p-3 rounded-lg text-emerald-600 text-xl"><i class="fas fa-boxes-stacked"></i></div>
+                            <h4 class="text-lg font-bold text-gray-800">Penerapan Budaya 5S</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">Metode penataan lingkungan kerja asal Jepang untuk memangkas pemborosan waktu dan ruang:</p>
+                        <ul class="text-xs text-gray-500 space-y-1 bg-gray-50 p-3 rounded-lg font-mono">
+                            <li><strong>1. Seiri (Ringkas):</strong> Singkirkan barang tak berguna.</li>
+                            <li><strong>2. Seiton (Rapi):</strong> Tata barang agar siap dipakai.</li>
+                            <li><strong>3. Seiso (Resik):</strong> Bersihkan area kerja total.</li>
+                            <li><strong>4. Seiketsu (Rawat):</strong> Standarisasi 3S sebelumnya.</li>
+                            <li><strong>5. Shitsuke (Rajin):</strong> Jadikan kebiasaan disiplin.</li>
+                        </ul>
+                    </div>
+
+                    <div class="materi-card bg-white p-6 rounded-xl shadow-md border-t-4 border-blue-500">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="bg-blue-100 p-3 rounded-lg text-blue-600 text-xl"><i class="fas fa-calculator"></i></div>
+                            <h4 class="text-lg font-bold text-gray-800">Practical Industrial Engineering</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">Teknik rekayasa praktis di lantai produksi guna menemukan cara kerja terbaik (*best method*):</p>
+                        <ul class="text-xs text-gray-500 space-y-2">
+                            <li><i class="fas fa-check text-blue-500 mr-1"></i> <strong>Studi Waktu & Gerakan:</strong> Mengeliminasi gerakan sia-sia pekerja.</li>
+                            <li><i class="fas fa-check text-blue-500 mr-1"></i> <strong>Layout Efisien:</strong> Memperpendek jarak perpindahan bahan baku baku.</li>
+                            <li><i class="fas fa-check text-blue-500 mr-1"></i> <strong>Prinsip ECRS:</strong> Eliminate, Combine, Rearrange, Simplify.</li>
+                        </ul>
+                    </div>
+
+                    <div class="materi-card bg-white p-6 rounded-xl shadow-md border-t-4 border-purple-500">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="bg-purple-100 p-3 rounded-lg text-purple-600 text-xl"><i class="fas fa-award"></i></div>
+                            <h4 class="text-lg font-bold text-gray-800">Total Quality Management</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">Sistem manajemen mutu komprehensif yang melibatkan seluruh tingkatan karyawan secara terus menerus:</p>
+                        <ul class="text-xs text-gray-500 space-y-2">
+                            <li><i class="fas fa-star text-purple-500 mr-1"></i> <strong>Fokus Pelanggan:</strong> Standar mutu ditentukan kepuasan pasar.</li>
+                            <li><i class="fas fa-star text-purple-500 mr-1"></i> <strong>Siklus PDCA:</strong> Plan, Do, Check, Action untuk Continuous Improvement.</li>
+                            <li><i class="fas fa-star text-purple-500 mr-1"></i> <strong>Zero Defect:</strong> Mencegah kesalahan sejak awal proses produksi.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="page-login" class="max-w-md mx-auto bg-white p-8 rounded-2xl shadow-xl border border-gray-100 hidden my-12">
+            <h3 class="text-2xl font-bold text-center text-gray-800 mb-2">Masuk Kemitraan</h3>
+            <p class="text-center text-gray-400 text-xs mb-6">Gunakan No. HP Terdaftar atau Akun Admin</p>
+            <form id="form-login" class="space-y-4" onsubmit="handleLogin(event)">
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 mb-1">NOMOR HP / USERNAME ADMIN</label>
+                    <input type="text" id="login-id" required class="w-full border p-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Contoh: 0812345xxx atau admin">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 mb-1">PASSWORD</label>
+                    <input type="password" id="login-pass" required class="w-full border p-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none" placeholder="••••••••">
+                </div>
+                <button type="submit" class="w-full gradient-bg text-white py-3 rounded-xl font-semibold shadow-md hover:opacity-90 transition">Masuk Aplikasi</button>
+            </form>
+            <p class="text-center text-xs text-gray-500 mt-6">Belum mendaftarkan UMKM/Perusahaan? <button onclick="switchPage('page-register')" class="text-blue-600 font-bold underline">Daftar Di Sini</button></p>
+        </section>
+
+        <section id="page-register" class="max-w-md mx-auto bg-white p-8 rounded-2xl shadow-xl border border-gray-100 hidden my-12">
+            <h3 class="text-2xl font-bold text-center text-gray-800 mb-2">Registrasi Kemitraan</h3>
+            <p class="text-center text-gray-400 text-xs mb-6 font-medium text-blue-600">Gabung Program Monitoring BPVP Sorong</p>
+            <form id="form-register" class="space-y-4" onsubmit="handleRegister(event)">
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 mb-1">NAMA PERUSAHAAN / UMKM</label>
+                    <input type="text" id="reg-nama" required class="w-full border p-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none" placeholder="PT. Sukses Mandiri / UMKM Maju">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 mb-1">NOMOR HP (Akan Menjadi ID Login)</label>
+                    <input type="text" id="reg-hp" required class="w-full border p-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none" placeholder="08XXXXXXXXXX">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 mb-1">ALAMAT OPERASIONAL</label>
+                    <textarea id="reg-alamat" required class="w-full border p-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none" rows="2" placeholder="Alamat lengkap di Sorong..."></textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 mb-1">BUAT PASSWORD</label>
+                    <input type="password" id="reg-pass" required class="w-full border p-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Minimal 6 karakter">
+                </div>
+                <button type="submit" class="w-full bg-emerald-600 text-white py-3 rounded-xl font-semibold shadow-md hover:bg-emerald-700 transition">Daftar Sekarang</button>
+            </form>
+            <p class="text-center text-xs text-gray-500 mt-6">Sudah punya akun? <button onclick="switchPage('page-login')" class="text-blue-600 font-bold underline">Login</button></p>
+        </section>
+
+
+        <section id="page-client-dashboard" class="space-y-6 hidden">
+            <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-xl shadow-sm flex items-start space-x-3">
+                <div class="text-amber-500 text-lg mt-0.5"><i class="fas fa-lightbulb"></i></div>
+                <div>
+                    <h5 class="font-bold text-amber-800 text-sm">Pengingat Budaya 5S Hari Ini!</h5>
+                    <p class="text-xs text-amber-700 leading-relaxed">Sudahkah Anda memandu tim memisahkan barang tidak terpakai (*Seiri*) dan membersihkan workstation (*Seiso*) pagi ini? Produktivitas berawal dari kedisiplinan kecil!</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center bg-white p-6 rounded-xl shadow-md border">
+                <div>
+                    <h2 class="text-xl font-bold text-gray-800 flex items-center"><i class="fas fa-building text-blue-600 mr-2"></i> Dashboard <span id="client-display-name" class="ml-1 text-blue-600"></span></h2>
+                    <p class="text-gray-400 text-xs">Kelola profil, data karyawan, dan laporan produktivitas berkala Anda.</p>
+                </div>
+                <div id="evaluasi-box" class="mt-4 md:mt-0 bg-blue-50 text-blue-800 p-3 rounded-lg border border-blue-200 hidden">
+                    <span class="text-xs font-bold block"><i class="fas fa-chart-line mr-1"></i> EVALUASI TERBARU DARI ADMIN:</span>
+                    <p class="text-sm font-black text-center mt-1" id="evaluasi-text">Belum ada evaluasi</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <button onclick="switchClientTab('tab-profil')" class="p-4 bg-white hover:bg-gray-50 text-left rounded-xl shadow border-b-4 border-blue-500 font-bold text-gray-700 flex items-center space-x-3"><i class="fas fa-id-card text-blue-500"></i> <span>1. Tools Akun & Profil</span></button>
+                <button onclick="switchClientTab('tab-absensi')" class="p-4 bg-white hover:bg-gray-50 text-left rounded-xl shadow border-b-4 border-emerald-500 font-bold text-gray-700 flex items-center space-x-3"><i class="fas fa-users-gear text-emerald-500"></i> <span>2. Tools Absensi Pegawai</span></button>
+                <button onclick="switchClientTab('tab-form-utama')" class="p-4 bg-white hover:bg-gray-50 text-left rounded-xl shadow border-b-4 border-purple-500 font-bold text-gray-700 flex items-center space-x-3"><i class="fas fa-file-invoice text-purple-500"></i> <span>3. Tools Form Produktivitas (Bulanan)</span></button>
+            </div>
+
+            <div id="tab-profil" class="client-tab bg-white p-6 rounded-xl shadow border hidden">
+                <h4 class="text-lg font-bold text-gray-800 mb-4"><i class="fas fa-edit mr-2 text-blue-500"></i>Update Identitas & Ganti Password</h4>
+                <form id="form-update-profil" class="space-y-4" onsubmit="handleUpdateProfil(event)">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-600 mb-1">NAMA PERUSAHAAN</label>
+                            <input type="text" id="up-nama" required class="w-full border p-3 rounded-lg text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-600 mb-1">ALAMAT</label>
+                            <input type="text" id="up-alamat" required class="w-full border p-3 rounded-lg text-sm">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-600 mb-1">GANTI PASSWORD BARU (Kosongkan jika tidak diganti)</label>
+                        <input type="password" id="up-pass" class="w-full border p-3 rounded-lg text-sm" placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="bg-blue-600 text-white px-5 py-2 rounded-lg text-sm font-semibold shadow hover:bg-blue-700">Simpan Perubahan</button>
+                </form>
+            </div>
+
+            <div id="tab-absensi" class="client-tab bg-white p-6 rounded-xl shadow border hidden space-y-6">
+                <div>
+                    <h4 class="text-lg font-bold text-gray-800"><i class="fas fa-user-plus mr-2 text-emerald-500"></i>Pendataan & Absensi Pegawai</h4>
+                    <p class="text-xs text-gray-400">Daftarkan nama karyawan Anda untuk melacak absensi.</p>
+                </div>
+                <form id="form-add-pegawai" class="flex flex-col md:flex-row gap-3" onsubmit="handleAddPegawai(event)">
+                    <input type="text" id="pegawai-nama" required class="border p-3 rounded-lg text-sm flex-1" placeholder="Masukkan Nama Lengkap Pegawai">
+                    <button type="submit" class="bg-emerald-600 text-white px-6 py-3 rounded-lg text-sm font-bold shadow hover:bg-emerald-700">Tambah Pegawai</button>
+                </form>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm border-collapse">
+                        <thead>
+                            <tr class="bg-gray-100 text-gray-700 uppercase text-xs tracking-wider">
+                                <th class="p-3 border">Nama Pegawai</th>
+                                <th class="p-3 border text-center">Status Kehadiran Hari Ini</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-pegawai-body">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="tab-form-utama" class="client-tab bg-white p-6 rounded-xl shadow border hidden space-y-6">
+                <div class="flex justify-between items-center border-b pb-4">
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-800"><i class="fas fa-chart-bar mr-2 text-purple-500"></i>Form Kinerja Produktivitas Bulanan</h4>
+                        <p class="text-xs text-gray-400">Silakan isi seluruh indikator di bawah ini secara objektif.</p>
+                    </div>
+                    <button onclick="downloadPDF('pdf-area-client')" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-xs font-bold shadow"><i class="fas fa-file-pdf mr-1"></i> Unduh Dokumen Form (.PDF)</button>
+                </div>
+
+                <div id="pdf-area-client" class="p-4 space-y-6">
+                    <div class="text-center hidden border-b pb-4" id="pdf-header-client">
+                        <h2 class="text-xl font-bold uppercase">LAPORAN BULANAN EVALUASI PRODUKTIVITAS</h2>
+                        <p class="text-xs">Binaan Balai Pelatihan Vokasi dan Produktivitas (BPVP) Sorong</p>
+                    </div>
+
+                    <form id="form-produktivitas-bulanan" class="space-y-6" onsubmit="handleSubmitProduktivitas(event)">
+                        <div class="bg-gray-50 p-4 rounded-xl space-y-3">
+                            <h5 class="font-bold text-sm text-blue-800 border-b pb-1"><i class="fas fa-users mr-1"></i> 1. PRODUKTIVITAS TENAGA KERJA</h5>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-600 mb-1">Jumlah Produk/Jasa Dihasilkan</label>
+                                    <input type="number" id="m-tk-produk" required class="w-full border p-2.5 rounded text-sm bg-white" placeholder="Unit/Pcs">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-600 mb-1">Tingkat Absensi Pegawai (%)</label>
+                                    <input type="number" id="m-tk-absensi" required class="w-full border p-2.5 rounded text-sm bg-white" placeholder="Persentase Sakit/Alfa">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-600 mb-1">Kualitas Hasil Kerja (%)</label>
+                                    <input type="number" id="m-tk-kualitas" required class="w-full border p-2.5 rounded text-sm bg-white" placeholder="Persentase Lolos QC">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded-xl space-y-3">
+                            <h5 class="font-bold text-sm text-emerald-800 border-b pb-1"><i class="fas fa-wallet mr-1"></i> 2. PRODUKTIVITAS MODAL</h5>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-600 mb-1">Total Omzet Bulan Ini (Rp)</label>
+                                    <input type="number" id="m-md-omzet" required class="w-full border p-2.5 rounded text-sm bg-white" placeholder="Rupiah">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-600 mb-1">Total Kesiapan Alat Produksi (%)</label>
+                                    <input type="number" id="m-md-alat" required class="w-full border p-2.5 rounded text-sm bg-white" placeholder="Kondisi Prima Operasional">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded-xl space-y-3">
+                            <h5 class="font-bold text-sm text-purple-800 border-b pb-1"><i class="fas fa-bolt mr-1"></i> 3. EFISIENSI PRODUKSI</h5>
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-600 mb-1">Biaya Produksi / Unit (Rp)</label>
+                                    <input type="number" id="m-ef-biaya" required class="w-full border p-2.5 rounded text-sm bg-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-600 mb-1">Waktu Produksi (Rata-rata Jam)</label>
+                                    <input type="number" id="m-ef-waktu" required class="w-full border p-2.5 rounded text-sm bg-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-600 mb-1">Persentase Produk Cacat (%)</label>
+                                    <input type="number" id="m-ef-cacat" required class="w-full border p-2.5 rounded text-sm bg-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-600 mb-1">Konsumsi Bahan Baku (%)</label>
+                                    <input type="number" id="m-ef-bahan" required class="w-full border p-2.5 rounded text-sm bg-white" placeholder="Rasio Efisiensi Bahan">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hidden justify-between mt-12 pt-8 border-t" id="pdf-footer-sig-client">
+                            <div></div>
+                            <div class="text-center w-48">
+                                <p class="text-xs mb-16">Mengetahui/Menyetujui,</p>
+                                <p class="text-sm font-bold border-b border-black font-serif">____________________</p>
+                                <p class="text-xs text-gray-500 font-medium">Manajer Operasional / Pemilik</p>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-xl font-bold shadow-md transition">Kirim Data Bulanan Ke Admin BPVP</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="page-admin-dashboard" class="space-y-8 hidden">
+            <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-xl flex justify-between items-center">
+                <div>
+                    <h2 class="text-2xl font-black text-amber-400 tracking-wide"><i class="fas fa-user-shield mr-2"></i> KONTROL PANEL ADMIN BPVP</h2>
+                    <p class="text-slate-400 text-xs mt-1">Hak Akses Penuh Pengukuran Produktivitas Wilayah Kerja Sorong</p>
+                </div>
+                <span class="bg-slate-800 text-amber-400 text-xs font-mono font-bold px-3 py-1.5 rounded-md border border-slate-700">Level Akses: Administrator</span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <div class="bg-white p-6 rounded-xl shadow border space-y-4">
+                    <h4 class="font-bold text-gray-800 text-base border-b pb-2"><i class="fas fa-building text-slate-700 mr-2"></i>Daftar Instansi / UMKM</h4>
+                    <div class="divide-y max-h-[400px] overflow-y-auto" id="admin-perusahaan-list">
+                        </div>
+                </div>
+
+                <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow border space-y-6">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b pb-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800 text-base"><i class="fas fa-chart-pie text-blue-600 mr-2"></i>Evaluasi Matriks Kinerja & Kirim Persentase</h4>
+                            <p class="text-xs text-gray-400">Pilih berkas masuk perusahaan di bawah untuk memproses kalkulasi skor.</p>
+                        </div>
+                        <button onclick="downloadPDF('admin-chart-container')" class="bg-rose-600 text-white text-xs px-3 py-1.5 rounded font-bold shadow hover:bg-rose-700 mt-2 md:mt-0"><i class="fas fa-download mr-1"></i> Unduh Laporan Grafik (.PDF)</button>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="admin-laporan-container">
+                        </div>
+
+                    <div id="admin-chart-container" class="bg-gray-50 p-4 rounded-xl border space-y-4">
+                        <h5 class="text-xs font-bold tracking-wider text-gray-500 uppercase">Visualisasi Evaluasi Multi-Aspek Efisiensi</h5>
+                        <canvas id="ctxAdmin" class="max-h-64"></canvas>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+                        <h5 class="text-xs font-bold text-slate-800">Kirim Penilaian Hasil Evaluasi Ke Perusahaan</h5>
+                        <div class="flex flex-col md:flex-row gap-3">
+                            <input type="hidden" id="eval-target-company-id">
+                            <input type="text" id="eval-input-score" class="border p-2.5 rounded text-sm flex-1 bg-white" placeholder="Contoh: Skor 85% - Baik. Tingkatkan di efisiensi bahan baku">
+                            <button onclick="submitEvaluation()" class="bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs px-6 py-3 rounded-lg shadow uppercase tracking-wide">Kirim Penilaian</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script type="module">
+        // Import SDK Firebase yang dibutuhkan secara modular via CDN
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, setDoc, getDoc, getDocs, collection, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // =========================================================================
+        // PENTING: Ganti konfigurasi di bawah ini dengan kode konfigurasi proyek Anda
+        // yang Anda dapatkan saat setup Firebase di Bab 1.
+        // =========================================================================
+        const firebaseConfig = {
+        apiKey: "AIzaSyCJg96RU6xgtQLW0dAsimZChB4_FKl4PRo",
+        authDomain: "monitoring-produktivitas-bpvp.firebaseapp.com",
+        projectId: "monitoring-produktivitas-bpvp",
+        storageBucket: "monitoring-produktivitas-bpvp.firebasestorage.app",
+        messagingSenderId: "4752857650",
+        appId: "1:4752857650:web:3369ccf4c3259b9cd6fa2b"
+        };
+
+        // Inisialisasi Firebase & Layanan Database
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // State Global Aplikasi Web
+        let currentUser = null;
+        let chartInstance = null;
+
+        // Mengekspos fungsi inti ke window agar bisa diakses elemen HTML (onclick)
+        window.switchPage = switchPage;
+        window.switchClientTab = switchClientTab;
+        window.handleLogin = handleLogin;
+        window.handleRegister = handleRegister;
+        window.logout = logout;
+        window.handleAddPegawai = handleAddPegawai;
+        window.handleUpdateProfil = handleUpdateProfil;
+        window.handleSubmitProduktivitas = handleSubmitProduktivitas;
+        window.deleteCompany = deleteCompany;
+        window.loadCompanyReport = loadCompanyReport;
+        window.deleteReport = deleteReport;
+        window.submitEvaluation = submitEvaluation;
+        window.downloadPDF = downloadPDF;
+
+        // Navigasi Antar Halaman Utama
+        function switchPage(pageId) {
+            ['page-home', 'page-login', 'page-register', 'page-client-dashboard', 'page-admin-dashboard'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+            document.getElementById(pageId).classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        // Navigasi Antar Sub-Tab Menu di Akun Perusahaan
+        function switchClientTab(tabId) {
+            ['tab-profil', 'tab-absensi', 'tab-form-utama'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+            document.getElementById(tabId).classList.remove('hidden');
+        }
+
+        // LOGIKA PENDAFTARAN PERUSAHAAN (UMKM) BARU
+        async function handleRegister(e) {
+            e.preventDefault();
+            const nama = document.getElementById('reg-nama').value;
+            const hp = document.getElementById('reg-hp').value;
+            const alamat = document.getElementById('reg-alamat').value;
+            const pass = document.getElementById('reg-pass').value;
+
+            if (pass.length < 6) {
+                alert('Sandi minimal diisi sepanjang 6 karakter!');
+                return;
+            }
+
+            try {
+                // Simpan nomor HP sebagai ID Unik Dokumen Koleksi di Firestore
+                const companyRef = doc(db, "companies", hp);
+                const snap = await getDoc(companyRef);
+                if(snap.exists()){
+                    alert("Nomor Handphone ini sudah terdaftar sebelumnya!");
+                    return;
+                }
+
+                await setDoc(companyRef, {
+                    nama: nama, hp: hp, alamat: alamat, pass: pass, role: "client", evaluasi: ""
+                });
+
+                alert("Registrasi Berhasil! Silakan masuk menggunakan nomor handphone Anda.");
+                document.getElementById('form-register').reset();
+                switchPage('page-login');
+            } catch (err) {
+                console.error(err);
+                alert("Terjadi kegagalan koneksi data.");
+            }
+        }
+
+        // LOGIKA PROSES MASUK / LOGIN (Sesuai Permintaan: Admin & No HP Perusahaan)
+        async function handleLogin(e) {
+            e.preventDefault();
+            const id = document.getElementById('login-id').value.trim();
+            const pass = document.getElementById('login-pass').value;
+
+            // Alur Bypass Cepat Sesuai Permintaan Spesifik Soal untuk Akun Admin
+            if (id === 'admin' && pass === '12345') {
+                currentUser = { nama: "Administrator BPVP", role: "admin", id: "admin" };
+                setupAdminDashboard();
+                return;
+            }
+
+            try {
+                // Alur Login untuk Akun Perusahaan / UMKM Rekan Binaan
+                const companyRef = doc(db, "companies", id);
+                const snap = await getDoc(companyRef);
+
+                if (snap.exists() && snap.data().pass === pass) {
+                    currentUser = snap.data();
+                    currentUser.id = id;
+                    setupClientDashboard();
+                } else {
+                    alert("Identitas ID (No. HP) atau Kata Sandi Anda Salah!");
+                }
+            } catch (err) {
+                console.error(err);
+                alert("Gagal memproses otentikasi data ke server.");
+            }
+        }
+
+        // LOGOUT / KELUAR SISTEM
+        function logout() {
+            currentUser = null;
+            document.getElementById('btn-logout-nav').classList.add('hidden');
+            document.getElementById('btn-login-nav').classList.remove('hidden');
+            document.getElementById('form-login').reset();
+            switchPage('page-home');
+        }
+
+        // SETUP KONTROL AKUN CLIENT
+        function setupClientDashboard() {
+            switchPage('page-client-dashboard');
+            switchClientTab('tab-profil');
+            document.getElementById('btn-login-nav').classList.add('hidden');
+            document.getElementById('btn-logout-nav').classList.remove('hidden');
+            document.getElementById('client-display-name').innerText = currentUser.nama;
+
+            // Isi nilai default input di form perubahan profil
+            document.getElementById('up-nama').value = currentUser.nama;
+            document.getElementById('up-alamat').value = currentUser.alamat;
+
+            if (currentUser.evaluasi) {
+                document.getElementById('evaluasi-box').classList.remove('hidden');
+                document.getElementById('evaluasi-text').innerText = currentUser.evaluasi;
+            } else {
+                document.getElementById('evaluasi-box').classList.add('hidden');
+            }
+
+            renderPegawaiTable();
+        }
+
+        // TOOLS 1: UPDATE PROFIL PERUSAHAAN
+        async function handleUpdateProfil(e) {
+            e.preventDefault();
+            const upNama = document.getElementById('up-nama').value;
+            const upAlamat = document.getElementById('up-alamat').value;
+            const upPass = document.getElementById('up-pass').value;
+
+            const updateData = { nama: upNama, alamat: upAlamat };
+            if(upPass.trim() !== "") updateData.pass = upPass;
+
+            try {
+                await updateDoc(doc(db, "companies", currentUser.id), updateData);
+                alert("Data profil instansi berhasil diperbarui!");
+                currentUser.nama = upNama;
+                currentUser.alamat = upAlamat;
+                document.getElementById('client-display-name').innerText = upNama;
+            } catch (err) {
+                alert("Gagal memperbarui data.");
+            }
+        }
+
+        // TOOLS 2: KELOLA DATA KARYAWAN & ABSENSI
+        async function handleAddPegawai(e) {
+            e.preventDefault();
+            const namaPegawai = document.getElementById('pegawai-nama').value;
+            try {
+                const idPegawai = Date.now().toString();
+                await setDoc(doc(db, `companies/${currentUser.id}/employees`, idPegawai), {
+                    nama: namaPegawai, status: "Hadir"
+                });
+                document.getElementById('form-add-pegawai').reset();
+                renderPegawaiTable();
+            } catch(e) { alert("Gagal menginput nama pegawai"); }
+        }
+
+        async function renderPegawaiTable() {
+            const body = document.getElementById('table-pegawai-body');
+            body.innerHTML = "";
+            const snap = await getDocs(collection(db, `companies/${currentUser.id}/employees`));
+            snap.forEach(res => {
+                const data = res.data();
+                body.innerHTML += `
+                    <tr class="border-b hover:bg-gray-50 text-xs">
+                        <td class="p-3 font-medium text-gray-800">${data.nama}</td>
+                        <td class="p-3 text-center">
+                            <span class="bg-emerald-100 text-emerald-800 font-bold px-2.5 py-1 rounded"><i class="fas fa-check-circle mr-1"></i>Hadir Aktif</span>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        // TOOLS 3: SUBMIT LAPORAN PRODUKTIVITAS BULANAN KE ADMIN
+        async function handleSubmitProduktivitas(e) {
+            e.preventDefault();
+            const payload = {
+                companyId: currentUser.id,
+                companyName: currentUser.nama,
+                timestamp: Date.now(),
+                tkProduk: parseFloat(document.getElementById('m-tk-produk').value),
+                tkAbsensi: parseFloat(document.getElementById('m-tk-absensi').value),
+                tkKualitas: parseFloat(document.getElementById('m-tk-kualitas').value),
+                mdOmzet: parseFloat(document.getElementById('m-md-omzet').value),
+                mdAlat: parseFloat(document.getElementById('m-md-alat').value),
+                efBiaya: parseFloat(document.getElementById('m-ef-biaya').value),
+                efWaktu: parseFloat(document.getElementById('m-ef-waktu').value),
+                efCacat: parseFloat(document.getElementById('m-ef-cacat').value),
+                efBahan: parseFloat(document.getElementById('m-ef-bahan').value)
+            };
+
+            try {
+                await setDoc(doc(db, "reports", currentUser.id), payload);
+                alert("Laporan indikator bulanan berhasil terkirim ke Admin BPVP Sorong!");
+            } catch (err) {
+                alert("Gagal mengirimkan berkas laporan bulanan.");
+            }
+        }
+
+        // ================= PANELS UNTUK KONTROL ADMINISTRATOR =================
+        async function setupAdminDashboard() {
+            switchPage('page-admin-dashboard');
+            document.getElementById('btn-login-nav').classList.add('hidden');
+            document.getElementById('btn-logout-nav').classList.remove('hidden');
+            initAdminChart([0,0,0,0]);
+            loadAdminData();
+        }
+
+        async function loadAdminData() {
+            // Load List Seluruh Perusahaan Terdaftar
+            const listContainer = document.getElementById('admin-perusahaan-list');
+            listContainer.innerHTML = "";
+            const compSnap = await getDocs(collection(db, "companies"));
+            compSnap.forEach(docBox => {
+                const comp = docBox.data();
+                listContainer.innerHTML += `
+                    <div class="py-3 flex justify-between items-center text-xs">
+                        <div>
+                            <p class="font-bold text-gray-800">${comp.nama}</p>
+                            <p class="text-gray-400 font-mono">${comp.hp}</p>
+                        </div>
+                        <button onclick="deleteCompany('${docBox.id}')" class="text-red-500 hover:text-red-700 font-bold"><i class="fas fa-trash"></i></button>
+                    </div>
+                `;
+            });
+
+            // Load Berkas Pengisian Form Bulanan Masuk
+            const reportContainer = document.getElementById('admin-laporan-container');
+            reportContainer.innerHTML = "";
+            const repSnap = await getDocs(collection(db, "reports"));
+            repSnap.forEach(repBox => {
+                const rep = repBox.data();
+                reportContainer.innerHTML += `
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col justify-between space-y-3">
+                        <div class="text-xs">
+                            <span class="font-bold text-blue-700 text-sm block">${rep.companyName}</span>
+                            <p class="mt-1">💼 Prod Tenaga Kerja: Vol <strong>${rep.tkProduk}</strong> | Absen <strong>${rep.tkAbsensi}%</strong></p>
+                            <p>💰 Prod Modal: Omzet <strong>Rp ${rep.mdOmzet.toLocaleString()}</strong></p>
+                            <p>⚙️ Rasio Produk Cacat/Gagal: <span class="text-red-600 font-bold">${rep.efCacat}%</span></p>
+                        </div>
+                        <div class="flex space-x-2 pt-2">
+                            <button onclick="loadCompanyReport('${rep.companyId}')" class="bg-blue-600 text-white text-xs px-2.5 py-1.5 rounded font-bold hover:bg-blue-700 flex-1"><i class="fas fa-chart-bar mr-1"></i> Analisis & Nilai</button>
+                            <button onclick="deleteReport('${rep.companyId}')" class="bg-gray-300 text-gray-700 text-xs px-2.5 py-1.5 rounded font-bold hover:bg-gray-400"><i class="fas fa-eraser"></i> Hapus</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        async function deleteCompany(id) {
+            if(confirm("Apakah Anda yakin ingin menghapus data keanggotaan perusahaan ini secara permanen?")) {
+                await deleteDoc(doc(db, "companies", id));
+                await deleteDoc(doc(db, "reports", id));
+                loadAdminData();
+            }
+        }
+
+        async function deleteReport(id) {
+            if(confirm("Hapus file form pengisian milik perusahaan ini karena keliru?")) {
+                await deleteDoc(doc(db, "reports", id));
+                loadAdminData();
+            }
+        }
+
+        // LOAD INDIKATOR LAPORAN & UPDATE GRAFIK CHART UNTUK ANALISIS ADMIN
+        async function loadCompanyReport(companyId) {
+            const snap = await getDoc(doc(db, "reports", companyId));
+            if(snap.exists()) {
+                const r = snap.data();
+                document.getElementById('eval-target-company-id').value = companyId;
+                
+                // Formulasi Matriks Sederhana untuk Sumbu Grafik Batang
+                const scoreTK = Math.max(0, 100 - r.tkAbsensi);
+                const scoreQC = r.tkKualitas;
+                const scoreAlat = r.mdAlat;
+                const scoreBahan = Math.max(0, 100 - r.efCacat);
+
+                initAdminChart([scoreTK, scoreQC, scoreAlat, scoreBahan]);
+                alert(`Data ${r.companyName} berhasil dimuat ke grafik analisis!`);
+            }
+        }
+
+        // ANALISIS GRAFIK MENGGUNAKAN CHART.JS
+        function initAdminChart(dataValues) {
+            const ctx = document.getElementById('ctxAdmin').getContext('2d');
+            if(chartInstance) chartInstance.destroy();
+            chartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Presensi Tim', 'Kelulusan QC', 'Kesiapan Mesin', 'Bebas Defect'],
+                    datasets: [{
+                        label: 'Persentase Efisiensi Kinerja (%)',
+                        data: dataValues,
+                        backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6'],
+                        borderRadius: 6
+                    }]
+                },
+                options: { responsive: true, scales: { y: { min: 0, max: 100 } } }
+            });
+        }
+
+        // ADMIN MELEPASKAN NILAI EVALUASI PERSENTASE KE DASHBOARD CLIENT
+        async function submitEvaluation() {
+            const cid = document.getElementById('eval-target-company-id').value;
+            const textScore = document.getElementById('eval-input-score').value;
+
+            if(!cid) { alert("Silakan pilih berkas perusahaan terlebih dahulu!"); return; }
+            if(!textScore) { alert("Form deskripsi evaluasi wajib diisi!"); return; }
+
+            try {
+                await updateDoc(doc(db, "companies", cid), { evaluasi: textScore });
+                alert("Persentase evaluasi berhasil terkirim ke dashboard perusahaan terkait!");
+                document.getElementById('eval-input-score').value = "";
+                loadAdminData();
+            } catch (err) { alert("Gagal mengirim evaluasi."); }
+        }
+
+        // FUNGSI UNTUK DOWNLOAD LAPORAN FORMAT PDF (Bisa Digunakan Admin Maupun Client)
+        function downloadPDF(elementId) {
+            const element = document.getElementById(elementId);
+            
+            // Pengondisian untuk menampilkan header khusus cetak PDF jika ada
+            const clientHeader = document.getElementById('pdf-header-client');
+            const clientSig = document.getElementById('pdf-footer-sig-client');
+            
+            if(elementId === 'pdf-area-client') {
+                clientHeader.classList.remove('hidden');
+                clientSig.classList.remove('flex');
+                clientSig.classList.add('flex');
+            }
+
+            const opsi = {
+                margin:       [15, 15, 15, 15],
+                filename:     `Laporan-Produktivitas-BPVP-${Date.now()}.pdf`,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opsi).from(element).save().then(() => {
+                // Kembalikan ke tampilan web normal setelah PDF selesai dibuat
+                if(elementId === 'pdf-area-client') {
+                    clientHeader.classList.add('hidden');
+                    clientSig.classList.remove('flex');
+                    clientSig.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
